@@ -50,6 +50,16 @@ Each module provides its feedback to the Chief. The Chief then **aggregates and 
 *   **Return Solution:** If the feedback is sufficient, the Chief formulates the final solution and returns it to the Main LLM.
 *   **Refine:** If the feedback has gaps or requires more detail, the Chief sends the request back to the team (or a subset of it) with a more refined focus for another cycle of processing.
 
+**3.1. Chained Cognitive Processing: From Raw Data to Actionable Insight**
+
+A core principle of Project Apex's cognitive architecture is the use of **Chained Cognitive Processing**, where the output of one specialized AI agent becomes the structured input for the next. This multi-step workflow allows the system to decompose complex problems into manageable, reliable stages, moving from unstructured data to a final, actionable plan. This is primarily orchestrated by the "Chief" agent, which directs the flow of information between its specialists.
+
+The process typically involves two distinct stages:
+
+*   **Stage 1: The "Structuring" Pass.** A specialist agent, such as the **Evaluator**, is tasked with a highly constrained prompt. Its sole purpose is to analyze raw, unstructured data (e.g., text from a scraped webpage, output from a command-line tool) and transform it into a predictable, machine-readable JSON object. This prompt strictly forbids conversational filler, ensuring a clean, structured output.
+
+*   **Stage 2: The "Execution" Pass.** The structured JSON from Stage 1 is then used by the C2 framework to dynamically construct a new, highly specific prompt for a different agent, such as the **Coder** or the **Chief**. This second prompt contains not just the structured data, but a precise, multi-step algorithm for the AI to follow. For example, instead of a generic "write a script" command, the directive becomes: "Using the provided network information, write a Python script that first pings the identified gateway, then performs a port scan on the top 3 most common web ports, and finally, formats the results into a summary table."
+
 ---
 
 ### **4. Key Features and Innovations**
