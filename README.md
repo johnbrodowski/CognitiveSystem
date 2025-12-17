@@ -6,6 +6,62 @@ The Orchestrated Cognitive Perspectives (OCP) system is an advanced cognitive ar
 
 At its core, a central coordinating "Chief" module receives a cognitive task from the main application's LLM. The Chief then assembles a team of "Cognitive Modules" (referred to as agents), each with a highly specific focus such as strategic planning, rule-following (compliance), or creative thinking. These modules work in parallel to analyze the problem from their unique perspectives. The Chief synthesizes their feedback, resolves disagreements through a voting mechanism where it holds the tie-breaking vote, and returns a single, aggregated solution or plan. The system features dynamic, runtime creation of new modules to fill capability gaps and a data-driven self-improvement loop that refines underperforming modules, ensuring it adapts and improves over time.
 
+
+
+```mermaid
+
+%%{init: {'themeVariables': {'primaryColor': '#1e1e1e', 'edgeLabelBackground':'#333', 'tertiaryColor':'#2d2d2d', 'textColor':'#fff', 'lineColor':'#fff'}}}%%
+flowchart TD
+    %% Node styling
+    classDef initLayer fill:#2d2d2d,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+    classDef dbLayer fill:#3a3a3a,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+    classDef runtimeLayer fill:#464646,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+    classDef integrationLayer fill:#525252,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+    classDef workflowLayer fill:#5e5e5e,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+    classDef loopLayer fill:#6a6a6a,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+    classDef reportLayer fill:#767676,stroke:#fff,stroke-width:1px,color:#fff,font-size:12px;
+
+    %% Initialization
+    A[Start]:::initLayer --> B[Initialize Components & Load Prompts]:::initLayer --> C[Create & Subscribe Agents]:::initLayer
+
+    %% Database Layer
+    DB[(Agent Database)]:::dbLayer
+    PerfDB[(Performance Database)]:::dbLayer
+    DB -->|Stores Agents & Versions| PerfDB
+
+    %% Agent Runtime
+    Runtime[AIManager & Agents]:::runtimeLayer
+    C --> Runtime
+    Collect[Collect Responses & Voting]:::runtimeLayer
+    Runtime --> Collect
+
+    %% Integration Layer
+    Integration[CognitiveSystem Integration]:::integrationLayer
+    Runtime --> Integration
+    Advanced[CognitiveSystem Advanced: Testing, Prompt Improvement, Reporting]:::integrationLayer
+    Integration --> Advanced
+
+    %% Workflows
+    Workflows[Workflows: Basic, Structured, Project Simulation]:::workflowLayer
+    Advanced --> Workflows
+
+    %% Improvement Loop
+    Loop[Improvement Loop: Record → Analyze → Improve → Update]:::loopLayer
+    Workflows --> Loop
+    Collect --> Loop
+
+    %% Output / Reporting
+    Reports[Agent, Task, Version, System Reports]:::reportLayer
+    Loop --> Reports
+
+    %% Feedback connections (nodes only, not subgraphs)
+    PerfDB --> Loop
+    Runtime --> Loop
+    Loop --> Runtime
+```
+
+
+
 ---
 
 ### **1. The Problem Solved: From Monolithic AI to a "Cognitive Multiplier"**
@@ -87,3 +143,7 @@ In the event of a significant disagreement between modules where the Chief canno
 ### **5. Conclusion: A Practical Path to Autonomous Reasoning**
 
 The Orchestrated Cognitive Perspectives system provides a robust and practical framework for advanced AI reasoning. By structuring cognition as a collaborative process between specialized, focused modules under the guidance of a central orchestrator, it achieves a high degree of interpretability, flexibility, and power. Its ability to dynamically create and refine its own cognitive components makes it a truly adaptive system, designed not just to solve today's problems, but to evolve and improve to meet the challenges of tomorrow. It is, in essence, a "cognitive multiplier" that enhances the problem-solving capacity of any autonomous system it supports.
+
+
+
+
