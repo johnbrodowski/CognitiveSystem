@@ -1,3 +1,8 @@
+# About this summary
+This is a summary of 'The Orchestrated Cognitive Perspectives' from AGPA, my fully autonomous general-purpose agent (closed-source, ~150k LOC).
+
+
+
 ### **The Orchestrated Cognitive Perspectives (OCP) System: A Detailed Write-Up (Revised)**
 
 ### **Executive Summary**
